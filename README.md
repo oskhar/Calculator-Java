@@ -8,7 +8,9 @@ Program ini berbasis gui dan bermungkinan untuk dikembangkan secara terus meneru
 
 Sederhana saja, saya ingin mengasah kemampuan sekaligus memahami cara berkerja dengan github selama proses pembuatan aplikasi ini.
 
-## Instalasi dan cara menggunakan
+## Instalasi dan Penggunaan
 
 ### Linux
-- git clone
+```bash
+~$ git clone https://github.com/MuhamadOskhar/Calculator-Java.git
+```
