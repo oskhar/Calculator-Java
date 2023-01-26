@@ -1,39 +1,19 @@
+/* 
+    This program as parent for view java file
+*/
+
+// Package
 package views;
 
-import java.awt.Color;
+// Library
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
+import controllers.ClassController;
+
+// Class
 public class ClassView extends JFrame {
+
+    // Atribute
+    private ClassController controller = new ClassController();
     
-    // CONSTRUCTOR
-    public ClassView () {
-        
-        setSize(500, 500);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
-
-        tambahTombol("10");
-
-        aturBackgorund (Color.white);
-        setVisible(true);
-
-    }
-
-    // METHOD
-    public void tambahTombol (String isi) {
-        TombolView tbl = new TombolView(isi, 50, 50, Color.blue, Color.white, this);
-        add(tbl);
-
-    }
-
-    // METHOD
-    public void aturBackgorund (Color wrn) {
-        JLabel background = new JLabel();
-        background.setBackground(wrn);
-        add(background);
-
-    }
-
 }
