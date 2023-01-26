@@ -20,7 +20,7 @@ public class ButtonView extends JButton {
         setBackground(background);
         setForeground(font);
         setBorder(null);
-        setFont(Font);
+        setFont(new Font("Arial", Font.BOLD, 20));
         addActionListener(act);
 
     }
