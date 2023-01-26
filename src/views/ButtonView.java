@@ -19,6 +19,8 @@ public class ButtonView extends JButton {
         setBounds(x, y, width, height);
         setBackground(background);
         setForeground(font);
+        setBorder(null);
+        setFont(Font);
         addActionListener(act);
 
     }
