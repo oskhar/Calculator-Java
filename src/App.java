@@ -1,7 +1,7 @@
-import views.MainView;
+import views.ClassView;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        new MainView();
+        new ClassView();
     }
 }

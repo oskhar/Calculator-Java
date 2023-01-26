@@ -1,12 +1,13 @@
 package views;
 
 import java.awt.Color;
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
-public class MainView extends JFrame {
+public class ClassView extends JFrame {
     
     // CONSTRUCTOR
-    public MainView () {
+    public ClassView () {
         
         setSize(500, 500);
         setLocationRelativeTo(null);
@@ -22,7 +23,7 @@ public class MainView extends JFrame {
 
     // METHOD
     public void tambahTombol (String isi) {
-        TombolView tbl = new TombolView(isi, 50, 50, Color.blue, Color.white);
+        TombolView tbl = new TombolView(isi, 50, 50, Color.blue, Color.white, this);
         add(tbl);
 
     }
