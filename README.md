@@ -1,4 +1,4 @@
-# ! MASIH DALAM MASA PENGEMBANGAN
+# Calculator java
 
 ## Pendahuluan
 
