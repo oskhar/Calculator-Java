@@ -1,7 +1,14 @@
 import views.ClassView;
+import controllers.StringController;
 
+// Class
 public class App {
+
+    // main Method
     public static void main(String[] args) throws Exception {
-        new ClassView();
+
+        // new ClassView();
+
+
     }
 }
