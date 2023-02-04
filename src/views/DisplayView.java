@@ -5,10 +5,10 @@ import java.awt.Font;
 import java.awt.Component;
 
 // Library
-import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 // Class
-public class DisplayView extends JLabel {
+public class DisplayView extends JTextArea {
     
     // Constructor
     public DisplayView (String nama, int width, int height, int x, int y, Color background, Color font) {
@@ -18,8 +18,7 @@ public class DisplayView extends JLabel {
         setBackground(background);
         setForeground(font);
         setFocusable(false);
-        setBorder(null);
-        setFont(new  Font("Arial", Font.BOLD, 20));
+        setFont(new  Font("Arial", Font.BOLD, 24));
         setAlignmentX(Component.LEFT_ALIGNMENT);
 
     }

@@ -20,6 +20,7 @@ public class ClassView extends JFrame {
     private ButtonView buttonNumber[] = new ButtonView[10];
     private ButtonView buttonOprator[] = new ButtonView[4];
     private ButtonView buttonControl[] = new ButtonView[5];
+    private DisplayView labelAngka[] = new DisplayView[2];
 
     // Constructor
     public ClassView () {
@@ -86,7 +87,17 @@ public class ClassView extends JFrame {
 
         for (i = 0; i < 2; i++) {
 
+            labelAngka[i] =  new DisplayView (
+                model.labelAngka[i][0], 
+                Integer.parseInt(model.labelAngka[i][1]),
+                Integer.parseInt(model.labelAngka[i][2]),
+                Integer.parseInt(model.labelAngka[i][3]),
+                Integer.parseInt(model.labelAngka[i][4]),
+                model.gelap,
+                model.putih
+            );
 
+            add(labelAngka[i]);
 
         }
 
