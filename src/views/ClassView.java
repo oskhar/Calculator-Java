@@ -7,6 +7,7 @@ package views;
 
 // Library
 import javax.swing.JFrame;
+import java.awt.*;
 
 import controllers.ClassController;
 import models.ClassModel;
@@ -19,7 +20,7 @@ public class ClassView extends JFrame {
     private ClassModel model = new ClassModel();
     private ButtonView buttonNumber[] = new ButtonView[10];
     private ButtonView buttonOprator[] = new ButtonView[4];
-    private ButtonView buttonControl[] = new ButtonView[3];
+    private ButtonView buttonControl[] = new ButtonView[5];
 
     // Constructor
     public ClassView () {
@@ -29,7 +30,7 @@ public class ClassView extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
-        setBackground(model.abutua);
+        getContentPane().setBackground(model.abutua);
         setLayout(null);
 
         for (i = 0; i < 10; i++) {
@@ -46,6 +47,40 @@ public class ClassView extends JFrame {
             );
 
             add(buttonNumber[i]);
+
+        }
+
+        for (i = 0; i < 4; i++) {
+
+            buttonOprator[i] =  new ButtonView (
+                model.buttonOprator[i][0], 
+                Integer.parseInt(model.buttonOprator[i][1]),
+                Integer.parseInt(model.buttonOprator[i][2]),
+                Integer.parseInt(model.buttonOprator[i][3]),
+                Integer.parseInt(model.buttonOprator[i][4]),
+                model.abumuda,
+                model.putih,
+                controller
+            );
+
+            add(buttonOprator[i]);
+
+        }
+
+        for (i = 0; i < 5; i++) {
+
+            buttonControl[i] =  new ButtonView (
+                model.buttonControl[i][0], 
+                Integer.parseInt(model.buttonControl[i][1]),
+                Integer.parseInt(model.buttonControl[i][2]),
+                Integer.parseInt(model.buttonControl[i][3]),
+                Integer.parseInt(model.buttonControl[i][4]),
+                model.abumuda,
+                model.putih,
+                controller
+            );
+
+            add(buttonControl[i]);
 
         }
 
