@@ -30,6 +30,7 @@ public class ClassView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setBackground(model.abutua);
+        setLayout(null);
 
         for (i = 0; i < 10; i++) {
 
@@ -43,6 +44,7 @@ public class ClassView extends JFrame {
                 model.putih,
                 controller
             );
+
             add(buttonNumber[i]);
 
         }
