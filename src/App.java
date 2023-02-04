@@ -1,5 +1,4 @@
 import views.ClassView;
-import controllers.StringController;
 
 // Class
 public class App {

@@ -2,6 +2,7 @@ package models;
 
 // Library
 import java.awt.Color;
+import javax.swing.ImageIcon;
 
 // Class
 public class ClassModel {
@@ -32,10 +33,16 @@ public class ClassModel {
         { ")",   "60", "40", "300", "170" },
         { "=",   "60", "90", "300", "220" }
     };
+    public String[][] labelAngka = {
+        {"0", "240", "40", "20", "40"},
+        {"0", "100", "40", "270", "40"}
+    };
     public int width = 390;
     public int height = 370;
-    public Color putih = new Color(220, 220, 220);
+    public ImageIcon icon = new ImageIcon("../lib/img/icon.svg");
+    public Color putih = new Color(200, 200, 200);
     public Color abutua = new Color(24, 27, 40);
     public Color abumuda = new Color(30, 34, 51);
+    public Color gelap = new Color(22, 25, 37);
 
 }

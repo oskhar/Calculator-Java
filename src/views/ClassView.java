@@ -7,7 +7,6 @@ package views;
 
 // Library
 import javax.swing.JFrame;
-import java.awt.*;
 
 import controllers.ClassController;
 import models.ClassModel;
@@ -31,6 +30,7 @@ public class ClassView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setBackground(model.abutua);
+        setIconImage(model.icon.getImage());
         setLayout(null);
 
         for (i = 0; i < 10; i++) {
@@ -81,6 +81,12 @@ public class ClassView extends JFrame {
             );
 
             add(buttonControl[i]);
+
+        }
+
+        for (i = 0; i < 2; i++) {
+
+
 
         }
 
