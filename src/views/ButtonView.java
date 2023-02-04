@@ -21,7 +21,7 @@ public class ButtonView extends JButton {
         setForeground(font);
         setFocusable(false);
         setBorder(null);
-        setFont(new  Font("Arial", Font.BOLD, 20));
+        setFont(new  Font("Arial", Font.BOLD, 18));
         addActionListener(act);
 
     }
