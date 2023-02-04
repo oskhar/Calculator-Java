@@ -2,6 +2,8 @@ package models;
 
 // Library
 import java.awt.Color;
+import java.io.File;
+
 import javax.swing.ImageIcon;
 
 // Class
@@ -39,10 +41,23 @@ public class ClassModel {
     };
     public int width = 390;
     public int height = 370;
-    public ImageIcon icon = new ImageIcon("../lib/img/icon.svg");
     public Color putih = new Color(200, 200, 200);
     public Color abutua = new Color(24, 27, 40);
     public Color abumuda = new Color(30, 34, 51);
     public Color gelap = new Color(22, 25, 37);
+    public ImageIcon icon;
+
+    // Constructor
+    public ClassModel () {
+
+        try {
+            File file = new File("");
+            String path = file.getCanonicalPath();
+            icon = new ImageIcon(path + "/Calculator-Java/lib/img/icon.png");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
 
 }
