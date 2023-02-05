@@ -32,7 +32,7 @@ public class OprasiString {
         }
 
         String[] pemecah = str.split("=");
-        double[] listHasil = new double[pemecah.length / 2 + 1];
+        String[] listHasil = new String[pemecah.length / 2 + 1];
 
         if (pemecah.length % 2 != 0) {
             kurungSalah = true;
@@ -41,11 +41,11 @@ public class OprasiString {
         }
 
         for (i = 0; i < pemecah.length / 2; i++) {
-            listHasil[i+1] = hasilAkhir(str.substring(urutan[(2*i)], urutan[1+(2*i)]));
+            listHasil[i+1] = hasilAkhir(str.substring(urutan[(2*i)], urutan[1+(2*i)]))+"";
 
         }
 
-        hasil = hasilAkhir(String.join(listHasil, ""));
+        hasil = hasilAkhir(String.join("", listHasil));
 
         return hasil;
 
