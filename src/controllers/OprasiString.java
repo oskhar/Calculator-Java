@@ -1,21 +1,58 @@
 package controllers;
 
-import java.util.Scanner;
 import java.util.Arrays;
 
 // Class
 public class OprasiString {
 
+    // Atribute
+    public boolean kurungSalah = false;
+
     // Method
-    public double select () {
+    public double hasil (String str) {
 
         double hasil = 0;
+        int i, tmp = 0;
+        int[] urutan = new int[str.length()];
+
+        for (i = 0; i < str.length(); i++) {
+            
+            if (str.charAt(i) == '(') {
+                str = str.substring(0, i) + "=" + str.substring(i + 1);
+                urutan[tmp] = i;
+                tmp++;
+
+            } else if (str.charAt(i) == ')') {
+                str = str.substring(0, i) + "=" + str.substring(i + 1);
+                urutan[tmp] = i;
+                tmp++;
+
+            }
+
+        }
+
+        String[] pemecah = str.split("=");
+        double[] listHasil = new double[pemecah.length / 2 + 1];
+
+        if (pemecah.length % 2 != 0) {
+            kurungSalah = true;
+            return 0;
+
+        }
+
+        for (i = 0; i < pemecah.length / 2; i++) {
+            listHasil[i+1] = hasilAkhir(str.substring(urutan[(2*i)], urutan[1+(2*i)]));
+
+        }
+
+        hasil = hasilAkhir(String.join(listHasil, ""));
+
         return hasil;
 
     }
 
     // Method
-    public static double hasil (String str) {
+    public double hasilAkhir (String str) {
 
         double hasil = 0;
         int i, j, tmp = 0;
@@ -85,17 +122,6 @@ public class OprasiString {
         }
 
         return hasil;
-
-    }
-
-    public static void main(String[] args) {
-        
-        Scanner ipt = new Scanner(System.in);
-        String perhitungan;
-
-        System.out.print("Masukan perhitungan matematika: ");
-        perhitungan = ipt.next();
-        System.out.println(hasil(perhitungan));
 
     }
 
