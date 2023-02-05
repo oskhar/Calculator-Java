@@ -45,8 +45,8 @@ public class OprasiString {
 
         }
 
+        // Output
         hasil = hasilAkhir(String.join("", listHasil));
-
         return hasil;
 
     }

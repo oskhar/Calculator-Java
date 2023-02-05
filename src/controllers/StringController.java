@@ -1,80 +1,137 @@
 package controllers;
 
-// Library
-import java.util.Stack;
+import java.util.Arrays;
 
 // Class
 public class StringController {
-   public static int hitung(String expression) {
-      char[] tokens = expression.toCharArray();
 
-      // Stack for numbers: 'values'
-      Stack<Integer> values = new Stack<Integer>();
+    // Atribute
+    public boolean kurungSalah = false;
 
-      // Stack for Operators: 'ops'
-      Stack<Character> ops = new Stack<Character>();
+    // Method
+    public double hitung (String str) {
 
-      for (int i = 0; i < tokens.length; i++) {
-         // Current token is a whitespace, skip it
-         if (tokens[i] == ' ')
-            continue;
+         double hasil = 0;
+         int i, tmp = 0;
+         int[] urutan = new int[str.length()];
 
-         // Current token is a number, push it to stack for numbers
-         if (tokens[i] >= '0' && tokens[i] <= '9') {
-            StringBuffer sbuf = new StringBuffer();
-            // There may be more than one digits in number
-            while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9')
-               sbuf.append(tokens[i++]);
-            values.push(Integer.parseInt(sbuf.toString()));
+         for (i = 0; i < str.length(); i++) {
+            
+            if (str.charAt(i) == '(') {
+                  str = str.substring(0, i) + "=" + str.substring(i + 1);
+                  urutan[tmp] = i;
+                  tmp++;
+
+            } else if (str.charAt(i) == ')') {
+                  str = str.substring(0, i) + "=" + str.substring(i + 1);
+                  urutan[tmp] = i;
+                  tmp++;
+
+            }
+
          }
 
-         // Current token is an operator.
-         else if (tokens[i] == '+' || tokens[i] == '-' ||
-                  tokens[i] == 'x' || tokens[i] == '÷') {
-            // While top of 'ops' has same or greater precedence to current
-            // token, which is an operator. Apply operator on top of 'ops'
-            // to top two elements in values stack
-            while (!ops.empty() && hasPrecedence(tokens[i], ops.peek()))
-               values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+         String[] pemecah = str.split("=");
+         if (pemecah.length > 1) {
+            
+            String[] listHasil = new String[pemecah.length / 2 + 1];
 
-            // Push current token to 'ops'.
-            ops.push(tokens[i]);
+            if (pemecah.length % 2 != 0) {
+               kurungSalah = true;
+               return 0;
+
+            }
+
+            for (i = 0; i < pemecah.length / 2; i++) {
+               listHasil[i+1] = hasilAkhir(str.substring(urutan[(2*i)], urutan[1+(2*i)]))+"";
+
+            }
+
+            // Output
+            hasil = hasilAkhir(String.join("", listHasil));
+
+         } else {
+
+            hasil = hasilAkhir(str);
+
          }
-      }
 
-      // Entire expression has been parsed at this point, apply remaining
-      // ops to remaining values
-      while (!ops.empty())
-         values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+         return hasil;
 
-      // Top of 'values' contains result, return it
-      return values.pop();
-   }
+    }
 
-   // Returns true if 'op2' has higher or same precedence as 'op1',
-   // otherwise returns false.
-   public static boolean hasPrecedence(char op1, char op2) {
-      if (op2 == '(' || op2 == ')')
-         return false;
-      if ((op1 == 'x' || op1 == '÷') && (op2 == '+' || op2 == '-'))
-         return false;
-      else
-         return true;
-   }
+    // Method
+    public double hasilAkhir (String str) {
 
-   // A utility method to apply an operator 'op' on operands 'a'
-   // and 'b'. Return the result.
-   public static int applyOp(char op, int b, int a) {
-      switch (op) {
-      case '+':
-         return a + b;
-      case '-':
-         return a - b;
-      case 'x':
-         return a * b;
-      case '÷':
-         return a / b;
-      }
-      return 0; 
-   }
+        double hasil = 0;
+        int i, j, tmp = 0;
+        int[] urutan = new int[str.length()];
+        char[] operator = {'÷', '*', '-', '+'};
+        int pin = 0;
+
+        for (i = 0; i < str.length(); i++) {
+            for (j = 0; j < 4; j++) {
+                if (str.charAt(i) == operator[j]) {
+                    str = str.substring(0, i) + "=" + str.substring(i + 1);
+                    urutan[tmp] = j;
+                    tmp++;
+
+                }
+
+            }
+
+        }
+
+        String[] pemecah = str.split("=");
+
+        for (i = 1; i < pemecah.length; i++) {
+
+            if (urutan[i-1] == 0) {
+                pemecah[i-1] = (Double.parseDouble(pemecah[(i-1)]) / Double.parseDouble(pemecah[i])) + "";
+                for (j = i; j < pemecah.length - 1; j ++) {
+                    pemecah[j] = pemecah[j+1];
+
+                }
+                for (j = i; j < urutan.length - 1; j ++) {
+                    urutan[j-1] = urutan[j];
+
+                }
+                pin++;
+
+            } else if (urutan[i-1] == 1) {
+                pemecah[i-1] = (Double.parseDouble(pemecah[(i-1)]) * Double.parseDouble(pemecah[i])) + "";
+                for (j = i; j < pemecah.length - 1; j ++) {
+                    pemecah[j] = pemecah[j+1];
+
+                }
+                for (j = i; j < urutan.length - 1; j ++) {
+                    urutan[j-1] = urutan[j];
+
+                }
+                pin++;
+
+            }
+            System.out.println(Arrays.toString(pemecah));
+            System.out.println(Arrays.toString(urutan));
+
+        }
+
+        hasil = Double.parseDouble(pemecah[0]);
+
+        for (i = 0; i < pemecah.length - pin; i++) {
+            if (urutan[i] == 2) {
+                hasil -= Double.parseDouble(pemecah[i+1]);
+
+            } else if (urutan[i] == 3) {
+                hasil += Double.parseDouble(pemecah[i+1]);
+
+            }
+            System.out.println(hasil);
+
+        }
+
+        return hasil;
+
+    }
+
 }

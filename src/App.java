@@ -7,9 +7,9 @@ public class App {
     // main Method
     public static void main(String[] args) throws Exception {
 
-        // new ClassView();
-        StringController hasil = new StringController();
-        System.out.println(hasil.hitung("1+1"));
+        new ClassView();
+        // StringController hasil = new StringController();
+        // System.out.println(hasil.hitung("11"));
 
     }
 }
