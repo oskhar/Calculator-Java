@@ -51,7 +51,8 @@ public class ClassModel {
         try {
             File file = new File("");
             String path = file.getCanonicalPath();
-            icon = path + "/Calculator-Java/lib/img/icon.png";
+            icon = path + "/lib/img/icon.png";
+            System.out.println(icon);
         } catch (Exception e) {
             System.out.println(e);
         }
