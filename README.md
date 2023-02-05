@@ -6,13 +6,13 @@ Program aplikasi kalkulator dilengkapi dengan program algoritma perhitungan dala
 
 ## Tujuan pembuatan
 
-Sederhana saja, saya ingin mengasah kemampuan sekaligus memahami cara berkerja dengan github selama proses pembuatan aplikasi ini.
+Sekadar ingin mengasah kemampuan dan memahami cara berkerja dengan github selama proses pembuatan aplikasi ini.
 
 ## Instalasi dan penggunaan
 
-### Linux
+### Linux Install jdk versi 11 dan jre versi 11 <br/>
 
-Install jdk versi 11 dan jre versi 11 <br/>
+### Linux
 **Arch:**
 ```
 $ sudo pacman -S jdk11-openjdk
