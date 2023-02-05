@@ -1,4 +1,5 @@
 import views.ClassView;
+import controllers.StringController;
 
 // Class
 public class App {
@@ -6,7 +7,9 @@ public class App {
     // main Method
     public static void main(String[] args) throws Exception {
 
-        new ClassView();
+        // new ClassView();
+        StringController hasil = new StringController();
+        System.out.println(hasil.hitung("1+1"));
 
     }
 }

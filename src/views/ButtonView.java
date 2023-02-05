@@ -16,6 +16,7 @@ public class ButtonView extends JButton {
     public ButtonView (String nama, int width, int height, int x, int y, Color background, Color font, ActionListener act) {
 
         setText(nama);
+        setActionCommand(nama);
         setBounds(x, y, width, height);
         setBackground(background);
         setForeground(font);

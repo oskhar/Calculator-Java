@@ -9,14 +9,15 @@ package views;
 import javax.swing.JFrame;
 
 import controllers.ClassController;
+import controllers.KeyboardController;
 import models.ClassModel;
 
 // Class
 public class ClassView extends JFrame {
 
     // Atribute
-    private ClassController controller = new ClassController();
     private ClassModel model = new ClassModel();
+    private ClassController controller;
     private ButtonView buttonNumber[] = new ButtonView[10];
     private ButtonView buttonOprator[] = new ButtonView[4];
     private ButtonView buttonControl[] = new ButtonView[5];
@@ -25,6 +26,7 @@ public class ClassView extends JFrame {
     // Constructor
     public ClassView () {
 
+        // Setting
         int i;
         setSize(model.width, model.height);
         setLocationRelativeTo(null);
@@ -33,6 +35,12 @@ public class ClassView extends JFrame {
         getContentPane().setBackground(model.abutua);
         setIconImage(model.icon.getImage());
         setLayout(null);
+
+        // Sync to my controller
+        addLabel(0);
+        addLabel(1);
+        controller = new ClassController(labelAngka[0], labelAngka[1]);
+        addKeyListener(new KeyboardController(labelAngka[0], labelAngka[1]));
 
         for (i = 0; i < 10; i++) {
 
@@ -87,21 +95,27 @@ public class ClassView extends JFrame {
 
         for (i = 0; i < 2; i++) {
 
-            labelAngka[i] =  new DisplayView (
-                model.labelAngka[i][0], 
-                Integer.parseInt(model.labelAngka[i][1]),
-                Integer.parseInt(model.labelAngka[i][2]),
-                Integer.parseInt(model.labelAngka[i][3]),
-                Integer.parseInt(model.labelAngka[i][4]),
-                model.gelap,
-                model.putih
-            );
-
-            add(labelAngka[i]);
-
         }
 
+        // Draw
         setVisible(true);
+
+    }
+
+    // Method
+    private void addLabel (int i) {
+
+        labelAngka[i] =  new DisplayView (
+            model.labelAngka[i][0], 
+            Integer.parseInt(model.labelAngka[i][1]),
+            Integer.parseInt(model.labelAngka[i][2]),
+            Integer.parseInt(model.labelAngka[i][3]),
+            Integer.parseInt(model.labelAngka[i][4]),
+            model.gelap,
+            model.putih
+        );
+
+        add(labelAngka[i]);
 
     }
     
