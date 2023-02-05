@@ -1,6 +1,7 @@
 package controllers;
 
-import java.util.Arrays;
+// Library
+import java.util.Stack;
 
 // Class
 public class StringController {
@@ -63,74 +64,66 @@ public class StringController {
     // Method
     public double hasilAkhir (String str) {
 
-        double hasil = 0;
-        int i, j, tmp = 0;
-        int[] urutan = new int[str.length()];
-        char[] operator = {'÷', '*', '-', '+'};
-        int pin = 0;
+         double hasil = 0;
+         int i, j;
+         Stack<Double> stkAngka = new Stack<>();
+         Stack<Integer> stkOptA = new Stack<>();
+         Stack<Integer> stkOptB = new Stack<>();
+         char[] operator = {'÷', 'x', '-', '+'};
 
-        for (i = 0; i < str.length(); i++) {
+         for (i = 0; i < str.length(); i++) {
             for (j = 0; j < 4; j++) {
-                if (str.charAt(i) == operator[j]) {
-                    str = str.substring(0, i) + "=" + str.substring(i + 1);
-                    urutan[tmp] = j;
-                    tmp++;
+                  if (str.charAt(i) == operator[j]) {
+                     str = str.substring(0, i) + "=" + str.substring(i + 1);
+                     stkOptA.push(j);
 
-                }
+                  }
+
+            }
+
+         }
+
+         String[] pemecah = str.split("=");
+         stkAngka.push(Double.parseDouble(pemecah[pemecah.length-1]));
+         for (i = pemecah.length-2; i >= 0; i--) {
+
+            if (stkOptA.peek() == 0) {
+               stkAngka.push(Double.parseDouble(pemecah[(i-1)]) / Double.parseDouble(pemecah[i]));
+               stkOptA.pop();
+
+            } else if (stkOptA.peek() == 1) {
+               stkAngka.push(Double.parseDouble(pemecah[(i-1)]) * Double.parseDouble(pemecah[i]));
+               stkOptA.pop();
+
+            } else {
+               stkAngka.push(Double.parseDouble(pemecah[i]));
+               stkOptB.push(stkOptA.peek());
+               stkOptA.pop();
 
             }
 
-        }
+         }
 
-        String[] pemecah = str.split("=");
+         System.out.println(stkOptB);
+         // Hitung hasil
+         hasil = stkAngka.peek();
+         stkAngka.pop();
 
-        for (i = 1; i < pemecah.length; i++) {
+         while (!stkAngka.empty()) {
+            if (stkOptB.peek() == 2) {
+                  hasil -= stkAngka.peek();
+                  stkAngka.pop();
 
-            if (urutan[i-1] == 0) {
-                pemecah[i-1] = (Double.parseDouble(pemecah[(i-1)]) / Double.parseDouble(pemecah[i])) + "";
-                for (j = i; j < pemecah.length - 1; j ++) {
-                    pemecah[j] = pemecah[j+1];
-
-                }
-                for (j = i; j < urutan.length - 1; j ++) {
-                    urutan[j-1] = urutan[j];
-
-                }
-                pin++;
-
-            } else if (urutan[i-1] == 1) {
-                pemecah[i-1] = (Double.parseDouble(pemecah[(i-1)]) * Double.parseDouble(pemecah[i])) + "";
-                for (j = i; j < pemecah.length - 1; j ++) {
-                    pemecah[j] = pemecah[j+1];
-
-                }
-                for (j = i; j < urutan.length - 1; j ++) {
-                    urutan[j-1] = urutan[j];
-
-                }
-                pin++;
-
-            }
-            System.out.println(Arrays.toString(pemecah));
-            System.out.println(Arrays.toString(urutan));
-
-        }
-
-        hasil = Double.parseDouble(pemecah[0]);
-
-        for (i = 0; i < pemecah.length - pin; i++) {
-            if (urutan[i] == 2) {
-                hasil -= Double.parseDouble(pemecah[i+1]);
-
-            } else if (urutan[i] == 3) {
-                hasil += Double.parseDouble(pemecah[i+1]);
+            } else if (stkOptB.peek() == 3) {
+                  hasil += stkAngka.peek();
+                  stkAngka.pop();
 
             }
             System.out.println(hasil);
 
-        }
+         }
 
-        return hasil;
+         return hasil;
 
     }
 
