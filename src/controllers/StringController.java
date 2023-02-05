@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Arrays;
 // Library
 import java.util.Stack;
 
@@ -8,56 +9,44 @@ public class StringController {
 
     // Atribute
     public boolean kurungSalah = false;
+    private Stack<Double> stkAngka = new Stack<>();
+    private Stack<Integer> stkOptA = new Stack<>();
+    private Stack<Integer> stkOptB = new Stack<>();
 
     // Method
     public double hitung (String str) {
 
-         double hasil = 0;
          int i, tmp = 0;
-         int[] urutan = new int[str.length()];
+         boolean find = false;
 
          for (i = 0; i < str.length(); i++) {
             
             if (str.charAt(i) == '(') {
-                  str = str.substring(0, i) + "=" + str.substring(i + 1);
-                  urutan[tmp] = i;
-                  tmp++;
+
+               if (find) {
+                  kurungSalah = true;
+                  return 0;
+
+               }
+               tmp = i+1;
+               find = true;
+               str = str.substring(0, i) + " " + str.substring(i + 1);
 
             } else if (str.charAt(i) == ')') {
-                  str = str.substring(0, i) + "=" + str.substring(i + 1);
-                  urutan[tmp] = i;
-                  tmp++;
+
+               if (!find) {
+                  kurungSalah = true;
+                  return 0;
+
+               }
+               find = false;
+               str = str.substring(0, tmp) + hasilAkhir(str.substring(tmp, i)) + str.substring(i + 1);
 
             }
 
          }
 
-         String[] pemecah = str.split("=");
-         if (pemecah.length > 1) {
-            
-            String[] listHasil = new String[pemecah.length / 2 + 1];
-
-            if (pemecah.length % 2 != 0) {
-               kurungSalah = true;
-               return 0;
-
-            }
-
-            for (i = 0; i < pemecah.length / 2; i++) {
-               listHasil[i+1] = hasilAkhir(str.substring(urutan[(2*i)], urutan[1+(2*i)]))+"";
-
-            }
-
-            // Output
-            hasil = hasilAkhir(String.join("", listHasil));
-
-         } else {
-
-            hasil = hasilAkhir(str);
-
-         }
-
-         return hasil;
+         return hasilAkhir(str);
 
     }
 
@@ -66,45 +55,66 @@ public class StringController {
 
          double hasil = 0;
          int i, j;
-         Stack<Double> stkAngka = new Stack<>();
-         Stack<Integer> stkOptA = new Stack<>();
-         Stack<Integer> stkOptB = new Stack<>();
          char[] operator = {'÷', 'x', '-', '+'};
 
          for (i = 0; i < str.length(); i++) {
-            for (j = 0; j < 4; j++) {
-                  if (str.charAt(i) == operator[j]) {
-                     str = str.substring(0, i) + "=" + str.substring(i + 1);
-                     stkOptA.push(j);
 
-                  }
+            for (j = 0; j < 4; j++) {
+
+               if (str.charAt(i) == operator[j]) {
+                  str = str.substring(0, i) + "=" + str.substring(i + 1);
+                  stkOptA.push(j);
+
+               }
 
             }
 
          }
 
          String[] pemecah = str.split("=");
-         stkAngka.push(Double.parseDouble(pemecah[pemecah.length-1]));
-         for (i = pemecah.length-2; i >= 0; i--) {
+         boolean limit = false;
+
+         for (i = pemecah.length-1; i > 0; i--) {
 
             if (stkOptA.peek() == 0) {
-               stkAngka.push(Double.parseDouble(pemecah[(i-1)]) / Double.parseDouble(pemecah[i]));
+               
+               stkAngka.push(Double.parseDouble(pemecah[((i)-1)]) / Double.parseDouble(pemecah[(i)]));
                stkOptA.pop();
+               limit = false;
 
             } else if (stkOptA.peek() == 1) {
+               
                stkAngka.push(Double.parseDouble(pemecah[(i-1)]) * Double.parseDouble(pemecah[i]));
                stkOptA.pop();
+               limit = false;
 
-            } else {
+            } else if (limit) {
+
                stkAngka.push(Double.parseDouble(pemecah[i]));
                stkOptB.push(stkOptA.peek());
                stkOptA.pop();
+               limit = false;
 
+            } else if (i == 1) {
+
+               stkAngka.push(Double.parseDouble(pemecah[i-1]));
+
+            } else {
+
+               stkOptB.push(stkOptA.peek());
+               stkOptA.pop();
+               limit = true;
+
+            }
+            if (pemecah.length-1 == 1) {
+
+               stkAngka.push(Double.parseDouble(pemecah[i]));
+               stkOptB.push(stkOptA.peek());
+               stkOptA.pop();
             }
 
          }
 
-         System.out.println(stkOptB);
          // Hitung hasil
          hasil = stkAngka.peek();
          stkAngka.pop();
@@ -119,12 +129,11 @@ public class StringController {
                   stkAngka.pop();
 
             }
-            System.out.println(hasil);
 
          }
 
          return hasil;
 
-    }
+   }
 
 }

@@ -40,7 +40,7 @@ public class ClassView extends JFrame {
         addLabel(0);
         addLabel(1);
         controller = new ClassController(labelAngka[0], labelAngka[1]);
-        addKeyListener(new KeyboardController(labelAngka[0], labelAngka[1]));
+        addKeyListener(controller.key);
 
         for (i = 0; i < 10; i++) {
 

@@ -12,7 +12,8 @@ public class KeyboardController implements KeyListener {
     private StringController hasil = new StringController();
     private DisplayView labelHitung;
     private DisplayView labelHasil;
-    private boolean first = true;
+    public boolean first = true;
+    public boolean ops = true;
 
     // Constructor
     public KeyboardController (DisplayView labelHitung, DisplayView labelHasil) {
@@ -47,20 +48,22 @@ public class KeyboardController implements KeyListener {
         String str = Character.toString(evt.getKeyChar());
         String insideCalc;
         int i;
-        String[] listOps = {"+", "-", "x", "(", ")"};
+        String[] listOps = {"+", "-", "(", ")"};
 
-        for (i = 0; i < 15; i++) {
+        for (i = 0; i < 14; i++) {
 
             if (str.equals(i+"")) {
                 insideCalc = first ? str : labelHitung.getText() + str;
                 labelHitung.setText(insideCalc);
+                ops = true;
                 if (first)
                     first = false;
 
-            } else if (i > 9) {
+            } else if (i > 9 && ops) {
                 if (str.equals(listOps[i-10])) {
                     insideCalc = first ? str : labelHitung.getText() + str;
                     labelHitung.setText(insideCalc);
+                    ops = false;
                     if (first)
                         first = false;
 
@@ -70,15 +73,24 @@ public class KeyboardController implements KeyListener {
 
         }
 
-        if (str.equals("/")) {
+        if (str.equals("/") && ops) {
             str = "÷";
             insideCalc = first ? str : labelHitung.getText() + str;
             labelHitung.setText(insideCalc);
+            ops = false;
+            if (first)
+                first = false;
+
+        } else if (str.equals("*") && ops) {
+            str = "x";
+            insideCalc = first ? str : labelHitung.getText() + str;
+            labelHitung.setText(insideCalc);
+            ops = false;
             if (first)
                 first = false;
 
         }
         
     }
-    
+
 }
