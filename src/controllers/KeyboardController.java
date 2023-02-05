@@ -65,29 +65,32 @@ public class KeyboardController implements KeyListener {
                 if (first)
                     first = false;
 
-            } else if (i > 9) {
-                if (str.equals(listOps[i-10]) && ops) {
+            } else if (i > 9 && ops) {
+
+                if (str.equals(listOps[i-10])) {
                     insideCalc = first ? str : labelHitung.getText() + str;
                     labelHitung.setText(insideCalc);
                     ops = false;
-                    if (first)
-                        first = false;
-
-                } else if (str.equals("(") && !ops) {
-                    insideCalc = first ? str : labelHitung.getText() + str;
-                    labelHitung.setText(insideCalc);
-                    ops = false;
-                    if (first)
-                        first = false;
-
-                } else if (str.equals(")") && ops) {
-                    insideCalc = first ? str : labelHitung.getText() + str;
-                    labelHitung.setText(insideCalc);
-                    ops = true;
                     if (first)
                         first = false;
 
                 }
+
+            } else if (str.equals("(") && !ops) {
+
+                insideCalc = first ? str : labelHitung.getText() + str;
+                labelHitung.setText(insideCalc);
+                ops = false;
+                if (first)
+                    first = false;
+
+            } else if (str.equals(")") && ops) {
+                
+                insideCalc = first ? str : labelHitung.getText() + str;
+                labelHitung.setText(insideCalc);
+                ops = true;
+                if (first)
+                    first = false;
 
             }
 

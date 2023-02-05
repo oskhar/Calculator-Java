@@ -24,7 +24,7 @@ $ sudo apt-get install jdk11-openjdk
 $ sudo apt-get install jre11-openjdk
 ```
 
-> **Note:** sangat disarankan untuk menggunakan extention java dalam Visual Studio Code untuk menjalankan program. Tapi kalau dirasa vscode mempersulit kalian dan ingin menjalankan menggunakna alternatif lain tidak masalah
+
 
 Clone atau install program pada linux
 ```

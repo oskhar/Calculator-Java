@@ -61,30 +61,32 @@ public class ClassController implements ActionListener {
                 if (key.first)
                     key.first = false;
 
-            } else if (i > 9) {
+            } else if (i > 9 && key.ops) {
                 
-                if (str.equals(listOps[i-10]) && key.ops) {
+                if (str.equals(listOps[i-10])) {
                     insideCalc = key.first ? str : labelHitung.getText() + str;
                     labelHitung.setText(insideCalc);
                     key.ops = false;
-                    if (key.first)
-                        key.first = false;
-
-                } else if (str.equals("(") && !key.ops) {
-                    insideCalc = key.first ? str : labelHitung.getText() + str;
-                    labelHitung.setText(insideCalc);
-                    key.ops = false;
-                    if (key.first)
-                        key.first = false;
-
-                } else if (str.equals(")") && key.ops) {
-                    insideCalc = key.first ? str : labelHitung.getText() + str;
-                    labelHitung.setText(insideCalc);
-                    key.ops = true;
                     if (key.first)
                         key.first = false;
 
                 }
+
+            } else if (str.equals("(") && !key.ops) {
+
+                insideCalc = key.first ? str : labelHitung.getText() + str;
+                labelHitung.setText(insideCalc);
+                key.ops = false;
+                if (key.first)
+                    key.first = false;
+
+            } else if (str.equals(")") && key.ops) {
+                
+                insideCalc = key.first ? str : labelHitung.getText() + str;
+                labelHitung.setText(insideCalc);
+                key.ops = true;
+                if (key.first)
+                    key.first = false;
 
             }
 
