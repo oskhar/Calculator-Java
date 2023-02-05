@@ -2,9 +2,9 @@
 package views;
 
 // Library
-import java.awt.*;
-import java.awt.event.*;
-
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 // Class

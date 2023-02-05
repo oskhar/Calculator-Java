@@ -2,9 +2,7 @@ package controllers;
 
 // Library
 import java.awt.event.ActionListener;
-
 import views.DisplayView;
-
 import java.awt.event.ActionEvent;
 
 // Class

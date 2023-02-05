@@ -1,16 +1,14 @@
 /* 
-    This program as parent for view java file
+    This program as main class for view java file
 */
 
 // Package
 package views;
 
-import javax.swing.ImageIcon;
 // Library
 import javax.swing.JFrame;
-
+import javax.swing.ImageIcon;
 import controllers.ClassController;
-import controllers.KeyboardController;
 import models.ClassModel;
 
 // Class

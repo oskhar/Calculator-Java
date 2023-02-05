@@ -3,9 +3,9 @@ package controllers;
 // Library
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import views.DisplayView;
 
+// Class
 public class KeyboardController implements KeyListener {
 
     // Atribute
