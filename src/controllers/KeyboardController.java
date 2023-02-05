@@ -13,7 +13,7 @@ public class KeyboardController implements KeyListener {
     private DisplayView labelHitung;
     private DisplayView labelHasil;
     public boolean first = true;
-    public boolean ops = true;
+    public boolean ops = false;
 
     // Constructor
     public KeyboardController (DisplayView labelHitung, DisplayView labelHasil) {
@@ -26,8 +26,14 @@ public class KeyboardController implements KeyListener {
     @Override
     public void keyPressed(KeyEvent evt) {
         String str = evt.getKeyText(evt.getKeyCode());
+
         if (str.equals("Enter")) {
             labelHasil.setText(hasil.hitung(labelHitung.getText())+"");
+            if (hasil.kurungSalah) {
+                labelHasil.setText("'(' or ')' not sync");
+                hasil.kurungSalah = false;
+                
+            }
 
         } else if (str.equals("Backspace") && labelHitung.getText().length() > 0) {
             labelHitung.setText(labelHitung.getText().substring(0, labelHitung.getText().length() - 1));
@@ -48,9 +54,9 @@ public class KeyboardController implements KeyListener {
         String str = Character.toString(evt.getKeyChar());
         String insideCalc;
         int i;
-        String[] listOps = {"+", "-", "(", ")"};
+        String[] listOps = {"+", "-"};
 
-        for (i = 0; i < 14; i++) {
+        for (i = 0; i < 12; i++) {
 
             if (str.equals(i+"")) {
                 insideCalc = first ? str : labelHitung.getText() + str;
@@ -59,11 +65,25 @@ public class KeyboardController implements KeyListener {
                 if (first)
                     first = false;
 
-            } else if (i > 9 && ops) {
-                if (str.equals(listOps[i-10])) {
+            } else if (i > 9) {
+                if (str.equals(listOps[i-10]) && ops) {
                     insideCalc = first ? str : labelHitung.getText() + str;
                     labelHitung.setText(insideCalc);
                     ops = false;
+                    if (first)
+                        first = false;
+
+                } else if (str.equals("(") && !ops) {
+                    insideCalc = first ? str : labelHitung.getText() + str;
+                    labelHitung.setText(insideCalc);
+                    ops = false;
+                    if (first)
+                        first = false;
+
+                } else if (str.equals(")") && ops) {
+                    insideCalc = first ? str : labelHitung.getText() + str;
+                    labelHitung.setText(insideCalc);
+                    ops = true;
                     if (first)
                         first = false;
 
@@ -90,7 +110,7 @@ public class KeyboardController implements KeyListener {
                 first = false;
 
         }
-        
+
     }
 
 }

@@ -34,12 +34,13 @@ public class ClassController implements ActionListener {
         int i;
         String insideCalc;
 
-        String[] listOps = {"+", "-", "x", "÷", "(", ")"};
+        String[] listOps = {"+", "-", "x", "÷", "("};
         if (str.equals("=")) {
 
             labelHasil.setText(hasil.hitung(labelHitung.getText())+"");
             if (hasil.kurungSalah) {
-                labelHasil.setText("Tanda kurung salah");
+                labelHasil.setText("'(' or ')' not sync");
+                hasil.kurungSalah = false;
                 
             }
 
@@ -51,23 +52,40 @@ public class ClassController implements ActionListener {
 
         }
 
-        for (i = 0; i < listOps.length; i++) {
+        for (i = 0; i < 10+listOps.length; i++) {
 
-            if (str.equals(listOps[i]) && key.ops) {
-
-                insideCalc = key.first ? str : labelHitung.getText() + str;
-                labelHitung.setText(insideCalc);
-                key.ops = false;
-                if (key.first)
-                    key.first = false;
-
-            } else {
-
+            if (str.equals(i+"")) {
                 insideCalc = key.first ? str : labelHitung.getText() + str;
                 labelHitung.setText(insideCalc);
                 key.ops = true;
                 if (key.first)
                     key.first = false;
+
+            } else if (i > 9) {
+                
+                if (str.equals(listOps[i-10]) && key.ops) {
+                    insideCalc = key.first ? str : labelHitung.getText() + str;
+                    labelHitung.setText(insideCalc);
+                    key.ops = false;
+                    if (key.first)
+                        key.first = false;
+
+                } else if (str.equals("(") && !key.ops) {
+                    insideCalc = key.first ? str : labelHitung.getText() + str;
+                    labelHitung.setText(insideCalc);
+                    key.ops = false;
+                    if (key.first)
+                        key.first = false;
+
+                } else if (str.equals(")") && key.ops) {
+                    insideCalc = key.first ? str : labelHitung.getText() + str;
+                    labelHitung.setText(insideCalc);
+                    key.ops = true;
+                    if (key.first)
+                        key.first = false;
+
+                }
+
             }
 
         }
