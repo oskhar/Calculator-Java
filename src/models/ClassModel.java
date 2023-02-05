@@ -4,8 +4,6 @@ package models;
 import java.awt.Color;
 import java.io.File;
 
-import javax.swing.ImageIcon;
-
 // Class
 public class ClassModel {
     
@@ -45,7 +43,7 @@ public class ClassModel {
     public Color abutua = new Color(24, 27, 40);
     public Color abumuda = new Color(30, 34, 51);
     public Color gelap = new Color(22, 25, 37);
-    public ImageIcon icon;
+    public String icon = "";
 
     // Constructor
     public ClassModel () {
@@ -53,7 +51,7 @@ public class ClassModel {
         try {
             File file = new File("");
             String path = file.getCanonicalPath();
-            icon = new ImageIcon(path + "/Calculator-Java/lib/img/icon.png");
+            icon = path + "/Calculator-Java/lib/img/icon.png";
         } catch (Exception e) {
             System.out.println(e);
         }

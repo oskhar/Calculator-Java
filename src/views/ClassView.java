@@ -5,6 +5,7 @@
 // Package
 package views;
 
+import javax.swing.ImageIcon;
 // Library
 import javax.swing.JFrame;
 
@@ -33,8 +34,8 @@ public class ClassView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setBackground(model.abutua);
-        setIconImage(model.icon.getImage());
         setLayout(null);
+        setIconImage(new ImageIcon(model.icon).getImage()); 
 
         // Sync to my controller
         addLabel(0);
