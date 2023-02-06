@@ -5,10 +5,10 @@ import java.awt.Font;
 import java.awt.Component;
 
 // Library
-import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 // Class
-public class DisplayView extends JTextArea {
+public class DisplayView extends JTextField {
     
     // Constructor
     public DisplayView (String nama, int width, int height, int x, int y, Color background, Color font) {
@@ -19,6 +19,7 @@ public class DisplayView extends JTextArea {
         setForeground(font);
         setFont(new  Font("Arial", Font.BOLD, 24));
         setAlignmentX(Component.LEFT_ALIGNMENT);
+        setBorder(null);
 
     }
 

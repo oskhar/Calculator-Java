@@ -34,9 +34,6 @@ public class KeyboardController implements KeyListener {
                 
             }
 
-        } else if (str.equals("Backspace") && labelHitung.getText().length() > 0) {
-            labelHitung.setText(labelHitung.getText().substring(0, labelHitung.getText().length() - 1));
-
         }
         
     }
