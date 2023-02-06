@@ -31,5 +31,10 @@ Download windows jdk installer in [web oracle](https://www.oracle.com/java/techn
 $ git clone https://github.com/MuhamadOskhar/Calculator-Java.git
 ```
 
-#### 3. Run atau jalankan
+#### 3. Run atau eksekusi program
 
+- anda dapat menjalankan program sebagai file jar
+![Ini gambar](docs/img/ss3.png)
+
+- atau anda dapat menjalankan program pada extensi visual studio code
+![Ini gambar](docs/img/code.svg)
