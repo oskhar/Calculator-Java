@@ -54,7 +54,7 @@ public class StringController {
 
          double hasil = 0;
          int i, j;
-         char[] operator = {'÷', 'x', '-', '+'};
+         char[] operator = {'/', '*', '-', '+'};
 
          for (i = 0; i < str.length(); i++) {
 
@@ -105,7 +105,7 @@ public class StringController {
                limit = true;
 
             }
-            if (pemecah.length-1 == 1) {
+            if (pemecah.length-1 == 1 && !stkOptA.empty()) {
 
                stkAngka.push(Double.parseDouble(pemecah[i]));
                stkOptB.push(stkOptA.peek());

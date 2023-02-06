@@ -13,7 +13,6 @@ public class KeyboardController implements KeyListener {
     private DisplayView labelHitung;
     private DisplayView labelHasil;
     public boolean first = true;
-    public boolean ops = false;
 
     // Constructor
     public KeyboardController (DisplayView labelHitung, DisplayView labelHasil) {
@@ -50,69 +49,6 @@ public class KeyboardController implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent evt) {
-        
-        String str = Character.toString(evt.getKeyChar());
-        String insideCalc;
-        int i;
-        String[] listOps = {"+", "-"};
-
-        for (i = 0; i < 12; i++) {
-
-            if (str.equals(i+"")) {
-                insideCalc = first ? str : labelHitung.getText() + str;
-                labelHitung.setText(insideCalc);
-                ops = true;
-                if (first)
-                    first = false;
-
-            } else if (i > 9 && ops) {
-
-                if (str.equals(listOps[i-10])) {
-                    insideCalc = first ? str : labelHitung.getText() + str;
-                    labelHitung.setText(insideCalc);
-                    ops = false;
-                    if (first)
-                        first = false;
-
-                }
-
-            } else if (str.equals("(") && !ops) {
-
-                insideCalc = first ? str : labelHitung.getText() + str;
-                labelHitung.setText(insideCalc);
-                ops = false;
-                if (first)
-                    first = false;
-
-            } else if (str.equals(")") && ops) {
-                
-                insideCalc = first ? str : labelHitung.getText() + str;
-                labelHitung.setText(insideCalc);
-                ops = true;
-                if (first)
-                    first = false;
-
-            }
-
-        }
-
-        if (str.equals("/") && ops) {
-            str = "÷";
-            insideCalc = first ? str : labelHitung.getText() + str;
-            labelHitung.setText(insideCalc);
-            ops = false;
-            if (first)
-                first = false;
-
-        } else if (str.equals("*") && ops) {
-            str = "x";
-            insideCalc = first ? str : labelHitung.getText() + str;
-            labelHitung.setText(insideCalc);
-            ops = false;
-            if (first)
-                first = false;
-
-        }
 
     }
 

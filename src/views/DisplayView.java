@@ -17,7 +17,6 @@ public class DisplayView extends JTextArea {
         setBounds(x, y, width, height);
         setBackground(background);
         setForeground(font);
-        setFocusable(false);
         setFont(new  Font("Arial", Font.BOLD, 24));
         setAlignmentX(Component.LEFT_ALIGNMENT);
 

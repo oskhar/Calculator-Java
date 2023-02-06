@@ -32,7 +32,7 @@ public class ClassController implements ActionListener {
         int i;
         String insideCalc;
 
-        String[] listOps = {"+", "-", "x", "÷", "("};
+        String[] listOps = {"+", "-", "*", "/", "(", ")"};
         if (str.equals("=")) {
 
             labelHasil.setText(hasil.hitung(labelHitung.getText())+"");
@@ -55,36 +55,18 @@ public class ClassController implements ActionListener {
             if (str.equals(i+"")) {
                 insideCalc = key.first ? str : labelHitung.getText() + str;
                 labelHitung.setText(insideCalc);
-                key.ops = true;
                 if (key.first)
                     key.first = false;
 
-            } else if (i > 9 && key.ops) {
+            } else if (i > 9) {
                 
                 if (str.equals(listOps[i-10])) {
                     insideCalc = key.first ? str : labelHitung.getText() + str;
                     labelHitung.setText(insideCalc);
-                    key.ops = false;
                     if (key.first)
                         key.first = false;
 
                 }
-
-            } else if (str.equals("(") && !key.ops) {
-
-                insideCalc = key.first ? str : labelHitung.getText() + str;
-                labelHitung.setText(insideCalc);
-                key.ops = false;
-                if (key.first)
-                    key.first = false;
-
-            } else if (str.equals(")") && key.ops) {
-                
-                insideCalc = key.first ? str : labelHitung.getText() + str;
-                labelHitung.setText(insideCalc);
-                key.ops = true;
-                if (key.first)
-                    key.first = false;
 
             }
 
