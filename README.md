@@ -10,9 +10,7 @@ Sekadar ingin mengasah kemampuan dan memahami cara berkerja dengan github selama
 
 ## Instalasi dan penggunaan
 
-### Linux Install jdk versi 11 dan jre versi 11 <br/>
-
-### Linux
+#### 1. Install jdk versi 11 dan jre versi 11
 **Arch:**
 ```
 $ sudo pacman -S jdk11-openjdk
@@ -24,14 +22,14 @@ $ sudo apt-get install jdk11-openjdk
 $ sudo apt-get install jre11-openjdk
 ```
 
+**Windows**
+Download windows jdk installer in [web oracle](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
 
+#### 2. Clone atau install repo pada
 
-Clone atau install program pada linux
 ```
 $ git clone https://github.com/MuhamadOskhar/Calculator-Java.git
 ```
 
-Masuk ke repository/folder mengunakan Visual Studio Code
-```
-$ code Calculator-Java
-```
+#### 3. Run atau jalankan
+
