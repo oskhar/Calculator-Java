@@ -36,7 +36,7 @@ $ git clone https://github.com/MuhamadOskhar/Calculator-Java.git
 - anda dapat menjalankan program sebagai file jar
 ![Ini gambar](docs/img/ss3.png)
 
-- atau anda dapat menjalankan program pada extensi visual studio code
+- atau anda dapat menjalankan program pada extensi visual studio code <br/>
 ![Ini gambar](docs/img/code.svg)
 
 #### 4. Oprasikan aplikasi
