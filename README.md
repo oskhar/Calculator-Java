@@ -48,4 +48,4 @@ Anda dapat menggunakan aplikasi kalkulator ini sebagaimana kalkulator digunakan.
 ###### Gambar 2. Mencoba menghitung beberapa angka acak
 ![Ini gambar](docs/img/ss2.png)
 ###### Gambar 3. Menghitung angka acak beserta tanda kurung
-![Ini gambar](docs/img/ss2.png)
+![Ini gambar](docs/img/ss4.png)
