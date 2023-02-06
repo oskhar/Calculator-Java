@@ -38,3 +38,12 @@ $ git clone https://github.com/MuhamadOskhar/Calculator-Java.git
 
 - atau anda dapat menjalankan program pada extensi visual studio code
 ![Ini gambar](docs/img/code.svg)
+
+#### 4. Oprasikan aplikasi
+
+Anda dapat menggunakan aplikasi kalkulator ini sebagaimana kalkulator digunakan. Para pengguna numpad tidak perlu khawatir, aplikasi ini mendukung pengetikan pada keyboard.
+
+###### Gambar 1. Tampilan sebelum dipakai
+![Ini gambar](docs/img/ss1.png)
+###### Gambar 2. Mencoba menghitung beberapa angka acak
+![Ini gambar](docs/img/ss2.png)
